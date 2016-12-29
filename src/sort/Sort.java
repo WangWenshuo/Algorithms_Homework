@@ -5,6 +5,9 @@ interface Sort {
 	public static boolean less(Comparable u,Comparable v){
 		return u.compareTo(v)<0;
 	}
+	public static boolean eq(Comparable u,Comparable v){
+		return u.compareTo(v)==0;
+	}
 	public static void exch(Comparable a[],int i,int j){
 		Comparable t = a[i];
 		a[i]=a[j];
