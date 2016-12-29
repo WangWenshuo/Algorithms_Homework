@@ -6,7 +6,9 @@ import edu.princeton.cs.algs4.StdOut;
 
 public class TestClient {
 	public static void main(String[] args) {
-		StdDraw.setPenColor(StdDraw.BLACK);
-		StdDraw.line(0, 0, 1000, 1000);
+			int i=10;
+			StdDraw.setPenColor(StdDraw.BLACK);
+			StdDraw.line(0, 0, i*i, i*i);	
+			StdDraw.line(7, 2, 3, 5);
 	}
 }

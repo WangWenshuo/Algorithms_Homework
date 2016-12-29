@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdOut;
 public class ShortestPath {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		In in = new In("/Users/Administrator/Desktop/Algorithms_Homework/src/The3rd/data.txt");
+		In in = new In("/Users/Administrator/Desktop/Algorithms_Homework/src/The3rd/usa.txt");
 		//System.out.println(args[0]);
 		//System.out.println(s);
 		Graph G = new Graph(in);
@@ -25,8 +25,8 @@ public class ShortestPath {
 			StdDraw.line(x0, y0, x1, y1);
 		}*/
 
-		int x = in.readInt();
-		int y = in.readInt();
+		int x = 0;
+		int y = 70;
 
 		int s=x;
 		Dijkstra dijkstra = new Dijkstra(G, Point.getPoint(s, G.getPoints()));

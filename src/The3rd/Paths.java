@@ -8,8 +8,8 @@ public class Paths {
 		// TODO Auto-generated method stub
 		In in = new In("/Users/Administrator/Desktop/Algorithms_Homework/src/The3rd/usa.txt");
 		Graph G = new Graph(in);
-		int x = in.readInt();
-		int y = in.readInt();
+		int x = 1;
+		int y = 70;
 		int s = x;
 		Dijkstra dijkstra = new Dijkstra(G, Point.getPoint(s, G.getPoints()));
 		for(int t=0;t<G.getV();t++){

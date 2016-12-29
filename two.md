@@ -6,7 +6,10 @@ grammar_cjkRuby: True
 
 ### 一、题目描述
 实现各种排序算法并且分析性能
-### 二、解决方法算法和描述
+### 二、解决方法/算法以及解释
+* 解决方法思想
+
+* 算法
 #### 0.各个排序算法需要实现的接口
 ```
 interface Sort {
@@ -55,7 +58,105 @@ interface Sort {
 }
 ```
 #### 1.插入排序
-#### 2.归并排序(递归排序和自底向上)
+```
+public class Insert_sort implements Sort{
+
+	@Override
+	public void sort(Comparable[] a) {
+		// TODO Auto-generated method stub
+		int N = a.length;
+		//
+		for(int i=1;i<N;i++){
+			for(int j=i;j>0;j--){
+				if(Sort.less(a[j], a[j-1])){
+					Sort.exch(a, j-1, j);
+				}else {
+					break;
+				}
+			}
+		}
+	}
+	public void sort(Comparable[] a,int lo,int hi){
+		for(int i=lo;i<hi;i++){
+			for(int j=i+1;j>lo&&Sort.less(a[j], a[j-1]);j--){
+					Sort.exch(a, j-1, j);
+			}
+		}
+		//System.out.println("3"+Sort.isSorted(a,lo,hi));
+	}
+	
+}
+```
+#### 2.1归并排序(递归排序)
+```
+public class Merge_Sort1 implements Sort{
+
+	Comparable aux[];
+	@Override
+	public void sort(Comparable[] a) {
+		// TODO Auto-generated method stub
+		int N = a.length;
+		aux=new Comparable[N];
+		sort(a, 0, a.length-1);
+	}
+	public void sort(Comparable[] a,int lo,int hi){
+		if(lo>=hi)
+			return;
+		int mid=lo+(hi-lo)/2;
+		sort(a, lo, mid);
+		sort(a, mid+1, hi);
+		if(Sort.less(a[mid+1], a[mid]))
+			merge(a, lo, mid, hi);
+	}
+	public void merge(Comparable a[],int lo,int mid,int hi){
+		int N = a.length;
+		int i=lo;
+		int j=mid+1;
+		for(int k=lo;k<=hi;k++)
+			aux[k]=a[k];
+		for(int k=lo;k<=hi;k++){
+			if(i>mid) a[k]=aux[j++];
+			else if(j>hi) a[k]=aux[i++];
+			else if(Sort.less(aux[i], aux[j])) a[k]=aux[i++];
+			else a[k]=aux[j++];
+		}
+	}
+
+}
+```
+#### 2.2归并排序(自底向上)
+```
+public class Merge_Sort3 implements Sort{
+	//Merge Sort From bottom to up
+	private Comparable[] aux;
+	@Override
+	public void sort(Comparable[] a) {
+		// TODO Auto-generated method stub
+		int N = a.length;
+		aux=new Comparable[N];
+		for(int step=2;step<=N;step+=step){
+			for(int i=0;i<N;i+=step){
+				merge(a, i,Math.min(i+step-1, N-1));
+			}
+		}
+	}
+	public void merge(Comparable[] a,int lo,int hi){
+		int mid=lo+(hi-lo)/2;
+		int i=lo;
+		int j=mid+1;
+		for(int k=lo;k<=hi;k++){
+			aux[k]=a[k];
+		}
+		for(int k=lo;k<=hi;k++){
+			if(i>mid) a[k]=aux[j++];
+			else if(j>hi) a[k]=aux[i++];
+			else if(Sort.less(a[i], a[j])) a[k]=aux[i++];
+			else a[k]=aux[j++];
+		}
+	}
+	
+}
+```
 #### 3.快排
 ```
 public class Quick_Sort implements Sort{
@@ -176,7 +277,7 @@ public class Quick_Sort_BM3 implements Sort{
         //然后一直将a[p]和a[j]交换，把前面的v放到中间来，p--j--,直到p小于lo，
         for(int k = p-1; k >= lo; k--, j--)
         	Sort.exch(a, k, j);
-        //将a[q]和a[i]交换，把后面的v放到中间，q++i++,直到q大于hi。
+        //将a[q]和a![\[][1]i]交换，把后面的v放到中间，q++i++,直到q大于hi。
         for(int k = q+1; k <= hi; k++, i++)
         	Sort.exch(a, k, i);
         //这时j+1是中间段落的第一个，i-1是中间段落的最后一个。
@@ -186,4 +287,46 @@ public class Quick_Sort_BM3 implements Sort{
 }
 ```
 
-### 三、实验结果和分析
+### 三、实验结果和分析(测试20000组数据和2000组数据)
+**结果**
+由于数据太多，不对数据进行打印，仅通过接口中的isSorted方法进行判断排序是否成功并输入其所需时间。
+* 插入排序
+2000组数据
+![enter description here][2]
+20000组数据
+![enter description here][3]
+* 归并排序(递归排序)
+2000组数据
+![enter description here][4]
+20000组数据
+![enter description here][5]
+* 归并排序(自底向上)
+2000组数据
+
+20000组数据
+* 快排
+2000组数据
+![enter description here][6]
+20000组数据
+![enter description here][7]
+* Quicksort with Dijkstra 3-way partitioning
+2000组数据
+![enter description here][8]
+20000组数据
+![enter description here][9]
+* Quicksort with Bentley-McIlroy 3-way partitioning
+
+
+  [1]: ./images/1483029480938.jpg "1483029480938.jpg"
+  [2]: ./images/1483030281664.jpg "1483030281664.jpg"
+  [3]: ./images/1483029480938.jpg "1483029480938.jpg"
+  [4]: ./images/1483030327255.jpg "1483030327255.jpg"
+  [5]: ./images/1483029505755.jpg "1483029505755.jpg"
+  [6]: ./images/1483029938717.jpg "1483029938717.jpg"
+  [7]: ./images/1483030462552.jpg "1483030462552.jpg"
+  [8]: ./images/1483030530719.jpg "1483030530719.jpg"
+  [9]: ./images/1483029770551.jpg "1483029770551.jpg"
+ 
+**分析**
+在少量2000组数据的时候，排序算法表现最好。
+在大量20000组数据的时候，排序算法表现最好。

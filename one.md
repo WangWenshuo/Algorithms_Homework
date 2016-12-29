@@ -208,3 +208,19 @@ public class PercolationStats {
 }
 ```
 ### 三、实验结果和分析
+#### *1.N=200 T=100*
+![enter description here][1]
+#### *2.N=2   T=10000*
+![enter description here][2]
+#### *3.N=2   T=100000*
+![enter description here][3]
+#### *4.N=300 T=200*
+![enter description here][4]
+
+**由以上测试数据可知，在大量实验情况下，p稳定在0.59。**
+
+
+  [1]: ./images/200%20100.png "200 100.png"
+  [2]: ./images/2%2010000.png "2 10000.png"
+  [3]: ./images/2%20100000.png "2 100000.png"
+  [4]: ./images/SGOPJ%295IOC%29%7B6JOZ65E%29GJT.png "SGOPJ&#41;5IOC&#41;{6JOZ65E&#41;GJT.png"
