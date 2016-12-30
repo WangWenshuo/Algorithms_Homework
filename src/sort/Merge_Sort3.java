@@ -8,23 +8,20 @@ public class Merge_Sort3 implements Sort{
 		// TODO Auto-generated method stub
 		int N = a.length;
 		aux=new Comparable[N];
-		for(int step=2;step<=N;step+=step){
-			for(int i=0;i<N;i+=step){
-				merge(a, i,Math.min(i+step-1, N-1));
-			}
-		}
+		for(int sz=1;sz<N;sz=sz+sz)
+			for(int lo=0;lo<N-sz;lo+=sz+sz)
+				merge(a, lo, lo+sz-1, Math.min(lo+sz+sz-1, N-1));
 	}
-	public void merge(Comparable[] a,int lo,int hi){
-		int mid=lo+(hi-lo)/2;
+	public void merge(Comparable a[],int lo,int mid,int hi){
+		int N = a.length;
 		int i=lo;
 		int j=mid+1;
-		for(int k=lo;k<=hi;k++){
+		for(int k=lo;k<=hi;k++)
 			aux[k]=a[k];
-		}
 		for(int k=lo;k<=hi;k++){
 			if(i>mid) a[k]=aux[j++];
 			else if(j>hi) a[k]=aux[i++];
-			else if(Sort.less(a[i], a[j])) a[k]=aux[i++];
+			else if(Sort.less(aux[i], aux[j])) a[k]=aux[i++];
 			else a[k]=aux[j++];
 		}
 	}

@@ -18,19 +18,16 @@ public class Quick_Sort implements Sort{
 		sort(a, j+1, hi);
 	}
 	
-    private static int partition(Comparable[] a, int start, int end) {  
-        int p = start, i, j;
-        for (i = start, j = end; i < j;) {
-            while(Sort.less(a[i], a[p]) && i < j) i++;
-            while(Sort.less(a[p], a[j]) && i < j) j--;
-            if(i >= j) {
-            	Sort.exch(a, p, i);
-            	return i;
-            }else{
-            	Sort.exch(a, i, j);
-            }
-        }
-        return i;
-    } 
-
+    private static int partition(Comparable[] a, int lo, int hi) {  
+    	int i=lo,j=hi+1;
+    	Comparable v = a[lo];
+    	while(true){
+    		while(Sort.less(a[++i], v)) if(i==hi) break;
+    		while(Sort.less(v, a[--j])) if(j==lo) break;
+    		if(i>=j) break;
+    		Sort.exch(a, i, j);
+    	}
+    	Sort.exch(a, lo, j);
+    	return j;
+   }
 }

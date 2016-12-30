@@ -6,13 +6,13 @@ import edu.princeton.cs.algs4.Stopwatch;
 
 public class Main{
 	public static void main(String[] args) {
-		int N=2000;
+		int N=20000;
 		Double a[] = new Double[N];
 		for(int i=0;i<N;i++){
 			a[i]=StdRandom.uniform();
 		}
 		Stopwatch timer = new Stopwatch();
-		Sort xSort=new Quick_Sort_Dj2();
+		Sort xSort=new QuickBentleyMcllroy();
 		xSort.sort(a);
 		double time = timer.elapsedTime();
 		System.out.print("The array is ");

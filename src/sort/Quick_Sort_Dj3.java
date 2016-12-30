@@ -2,7 +2,7 @@ package sort;
 
 import edu.princeton.cs.algs4.StdRandom;
 
-public class Quick_Sort_Dj2 implements Sort{
+public class Quick_Sort_Dj3 implements Sort{
 
 	@Override
 	public void sort(Comparable[] a) {
