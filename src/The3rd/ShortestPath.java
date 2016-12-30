@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdOut;
 public class ShortestPath {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		In in = new In("/Users/Administrator/Desktop/Algorithms_Homework/src/The3rd/usa.txt");
+		In in = new In("/home/wangxiaoxiong/Documents/Algorithms_Homework/src/The3rd/usa.txt");
 		//System.out.println(args[0]);
 		//System.out.println(s);
 		Graph G = new Graph(in);
